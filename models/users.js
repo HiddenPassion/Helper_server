@@ -53,5 +53,17 @@ module.exports = (sequelize, DataTypes) => {
     });
   });
 
+  User.associate = (models) => {
+    models.User.hasMany(models.MaterialRating, {
+      foreignKey: 'user_id',
+      sourceCode: 'id',
+    });
+
+    models.User.hasMany(models.LecturerRating, {
+      foreignKey: 'user_id',
+      sourceCode: 'id',
+    });
+  };
+
   return User;
 };

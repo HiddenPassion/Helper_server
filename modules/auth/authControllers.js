@@ -35,6 +35,7 @@ const userSignUp = async (ctx) => {
       user,
     };
   } catch (err) {
+    console.log(err);
     errorMessage.validationError();
   }
 };
@@ -45,12 +46,12 @@ const userLogIn = async (ctx, next) => {
       errorMessage.unauthorizedError(ERROR_MESSAGE);
     }
 
-    if (ctx.request.header.isadminapp === `${user.isAdmin}`) {
-      const token = generateToken(user);
-      return (ctx.body = { user, token });
-    } else {
-      errorMessage.forbiddenError();
-    }
+    // if (ctx.request.header.isadminapp === `${user.isAdmin}`) {
+    const token = generateToken(user);
+    return (ctx.body = { user, token });
+    // } else {
+    //   errorMessage.forbiddenError();
+    // }
   })(ctx, next);
 };
 
