@@ -5,7 +5,7 @@ const assignMaterialToSubject = async (subjectId, { name }, transaction) => {
   try {
     return await Material.create(
         {
-          subject_id: subjectId,
+          subjectId,
           name,
         },
         {
@@ -25,12 +25,12 @@ const addMaterialData = async (
   try {
     return await MaterialData.create(
         {
-          material_id: materialId,
+          materialId,
           url,
           name,
           extensionType,
-          lecturer_id: lecturerId,
-          user_id: userId,
+          lecturerId,
+          userId,
         },
         {
           transaction,
@@ -45,7 +45,7 @@ const getAssignedMaterialsToSubject = async (subjectId, { name }) => {
   try {
     return await Material.findAll({
       where: {
-        subject_id: subjectId,
+        subjectId,
         name: { [Op.regexp]: name ? name : '' },
       },
     });

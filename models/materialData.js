@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       field: 'extension_type',
     },
+    materialId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'material_id',
+    },
   });
 
   MaterialData.beforeCreate((materialData, option) => {

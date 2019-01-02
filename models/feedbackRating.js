@@ -10,6 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     status: {
       type: DataTypes.BOOLEAN,
     },
+    userId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'user_id',
+    },
+    feedbackId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'feedback_id',
+    },
   });
 
   FeedbackRating.associate = (models) => {

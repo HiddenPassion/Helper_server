@@ -19,6 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       field: 'short_name',
     },
+    universityId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'university_id',
+    },
   });
 
   Subject.associate = (models) => {

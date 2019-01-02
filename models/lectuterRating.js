@@ -11,6 +11,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       // allowNull: false,
     },
+    userId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'user_id',
+    },
+    lecturerId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'lecturer_id',
+    },
   });
 
   LecturerRating.associate = (models) => {

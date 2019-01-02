@@ -11,6 +11,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       // allowNull: false,
     },
+    userId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'user_id',
+    },
+    materialId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'material_id',
+    },
   });
 
   MaterialRating.associate = (models) => {

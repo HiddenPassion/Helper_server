@@ -4,7 +4,7 @@ const Op = require('sequelize').Op;
 const assignSubjectToUniversity = async (universityId, { fullName, shortName }) => {
   try {
     return await Subject.create({
-      university_id: universityId,
+      universityId,
       fullName,
       shortName,
     });
@@ -17,7 +17,7 @@ const assignSubjectToUniversity = async (universityId, { fullName, shortName }) 
 const assignMaterialToSubject = async (subjectId, { fullName, shortName }) => {
   try {
     return await Material.create({
-      subject_id: subjectId,
+      subjectId,
       fullName,
       shortName,
     });
@@ -30,7 +30,7 @@ const getAssignedSubjectsToUniversity = async (universityId, { fullName, shortNa
   try {
     return await Subject.findAll({
       where: {
-        university_id: universityId,
+        universityId,
         fullName: { [Op.regexp]: fullName ? fullName : '' },
         shortName: { [Op.regexp]: shortName ? shortName : '' },
       },

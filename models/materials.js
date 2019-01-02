@@ -11,6 +11,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    userId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'user_id',
+    },
+    lecturerId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'lecturer_id',
+    },
+    subjectId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'subject_id',
+    },
   });
 
   Material.associate = (models) => {
