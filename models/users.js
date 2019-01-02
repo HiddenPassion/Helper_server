@@ -63,6 +63,21 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'user_id',
       sourceCode: 'id',
     });
+
+    models.User.hasMany(models.FeedbackRating, {
+      foreignKey: 'user_id',
+      sourceCode: 'id',
+    });
+
+    models.User.hasMany(models.Feedback, {
+      foreignKey: 'user_id',
+      sourceCode: 'id',
+    });
+
+    models.User.hasMany(models.Material, {
+      foreignKey: 'user_id',
+      sourceCode: 'id',
+    });
   };
 
   return User;

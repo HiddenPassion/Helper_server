@@ -24,6 +24,11 @@ module.exports = (sequelize, DataTypes) => {
       targetKey: 'id',
     });
 
+    models.Material.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      targetKey: 'id',
+    });
+
     models.Material.hasMany(models.MaterialData, {
       foreignKey: 'material_id',
       sourceCode: 'id',

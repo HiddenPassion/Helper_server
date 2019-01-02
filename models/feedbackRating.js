@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const LecturerRating = sequelize.define('LecturerRating', {
+  const FeedbackRating = sequelize.define('FeedbackRating', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -9,21 +9,20 @@ module.exports = (sequelize, DataTypes) => {
     },
     status: {
       type: DataTypes.BOOLEAN,
-      // allowNull: false,
     },
   });
 
-  LecturerRating.associate = (models) => {
-    models.LecturerRating.belongsTo(models.Lecturer, {
-      foreignKey: 'lecturer_id',
+  FeedbackRating.associate = (models) => {
+    models.FeedbackRating.belongsTo(models.User, {
+      foreignKey: 'user_id',
       targetKey: 'id',
     });
 
-    models.LecturerRating.belongsTo(models.User, {
-      foreignKey: 'user_id',
+    models.FeedbackRating.belongsTo(models.Feedback, {
+      foreignKey: 'feedback_id',
       targetKey: 'id',
     });
   };
 
-  return LecturerRating;
+  return FeedbackRating;
 };

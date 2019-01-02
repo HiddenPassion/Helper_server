@@ -37,7 +37,7 @@ const addUniversity = async ({ fullName, shortName }) => {
 const deleteUniversity = async (id) => {
   try {
     await University.destroy({
-      where: { id },
+      where: { id: id },
     });
   } catch (err) {
     throw new Error(err);

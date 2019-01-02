@@ -25,7 +25,7 @@ const getUniversities = async (ctx) => {
 
 const getUniversityById = async (ctx) => {
   try {
-    const university = await db.getUniversityById(id);
+    const university = await db.getUniversityById(universityId);
 
     ctx.body = {
       university,
@@ -37,7 +37,7 @@ const getUniversityById = async (ctx) => {
 
 const deleteUniversity = async (ctx) => {
   try {
-    await db.deleteUniversity(ctx.params.id);
+    await db.deleteUniversity(ctx.params.universityId);
 
     ctx.body = {};
   } catch (err) {
@@ -47,7 +47,7 @@ const deleteUniversity = async (ctx) => {
 
 const updateUniversity = async (ctx) => {
   try {
-    await db.updateUniversity(ctx.params.id, ctx.request.body);
+    await db.updateUniversity(ctx.params.universityId, ctx.request.body);
 
     ctx.body = {};
   } catch (err) {
