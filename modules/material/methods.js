@@ -41,6 +41,14 @@ const addMaterialData = async (
   }
 };
 
+const getMaterialData = async (id) => {
+  try {
+    return await MaterialData.findById(id);
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
 const getAssignedMaterialsToSubject = async (subjectId, { name }) => {
   try {
     return await Material.findAll({
@@ -48,6 +56,11 @@ const getAssignedMaterialsToSubject = async (subjectId, { name }) => {
         subjectId,
         name: { [Op.regexp]: name ? name : '' },
       },
+      include: [
+        {
+          model: Material,
+        },
+      ],
     });
   } catch (err) {
     throw new Error(err);
@@ -57,6 +70,7 @@ const getAssignedMaterialsToSubject = async (subjectId, { name }) => {
 module.exports = {
   sequelize,
   addMaterialData,
+  getMaterialData,
   assignMaterialToSubject,
   getAssignedMaterialsToSubject,
 };

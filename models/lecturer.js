@@ -38,6 +38,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'lecturer_id',
       sourceCode: 'id',
     });
+
+    models.Lecturer.hasMany(models.Feedback, {
+      foreignKey: 'lecturer_id',
+      sourceCode: 'id',
+    });
   };
 
   return Lecturer;

@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       field: 'user_id',
     },
+    lecturerId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'lecturer_id',
+    },
   });
 
   Feedback.associate = (models) => {
@@ -26,6 +31,11 @@ module.exports = (sequelize, DataTypes) => {
 
     models.Feedback.belongsTo(models.User, {
       foreignKey: 'user_id',
+      targetKey: 'id',
+    });
+
+    models.Feedback.belongsTo(models.Lecturer, {
+      foreignKey: 'lecturer_id',
       targetKey: 'id',
     });
   };
