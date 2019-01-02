@@ -11,11 +11,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    name: {
+      type: DataTypes.STRING,
+    },
     extensionType: {
       type: DataTypes.STRING,
       allowNull: false,
       field: 'extension_type',
     },
+  });
+
+  MaterialData.beforeCreate((materialData, option) => {
+    return new Promise((resolve, reject) => {
+      if (!materialData.name) {
+        materialData.name = Math.random().toString(36).substr(2, 9);
+      }
+      resolve(materialData);
+    });
   });
 
   MaterialData.associate = (models) => {

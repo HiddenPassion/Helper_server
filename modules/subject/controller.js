@@ -3,7 +3,7 @@ const errorMessage = require('../../utils/errorMessage');
 
 const assignSubjectToUniversity = async (ctx) => {
   try {
-    db.assignSubjectToUniversity(ctx.params.universityId, ctx.request.body);
+    await db.assignSubjectToUniversity(ctx.params.universityId, ctx.request.body);
 
     ctx.body = {};
   } catch (err) {
@@ -13,7 +13,7 @@ const assignSubjectToUniversity = async (ctx) => {
 
 const getAssignedSubjectsToUniversity = async (ctx) => {
   try {
-    db.getAssignedSubjectsToUniversity(ctx.params.universityId, ctx.request.query);
+    await db.getAssignedSubjectsToUniversity(ctx.params.universityId, ctx.request.query);
 
     ctx.body = {};
   } catch (err) {
@@ -23,7 +23,7 @@ const getAssignedSubjectsToUniversity = async (ctx) => {
 
 const updateSubject = async (ctx) => {
   try {
-    db.updateSubject(ctx.params.subjectId, ctx.request.body);
+    await db.updateSubject(ctx.params.subjectId, ctx.request.body);
 
     ctx.body = {};
   } catch (err) {

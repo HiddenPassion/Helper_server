@@ -1,4 +1,4 @@
-const { University } = require('../models/');
+const { University } = require('../../models');
 const Op = require('sequelize').Op;
 
 const getUniversities = async ({ fullName, shortName }) => {
