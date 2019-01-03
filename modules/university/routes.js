@@ -8,11 +8,11 @@ const subjectController = require('../subject/controller');
 // const roles = require('../../utils/roles');
 
 module.exports = (app) => {
-  const routes = new Router({ prefix: '/university' });
+  const routes = new Router({ prefix: '/universities' });
 
   routes
       .get('/', universityController.getUniversities)
-      .get('/subjects/:universityId', subjectController.getAssignedSubjectsToUniversity)
+      .get('/subject/:universityId', subjectController.getAssignedSubjectsToUniversity)
       .get('/:universityId', universityController.getUniversityById) // should be last in queue
       // .use(authController.checkAuthUser)
       // .use(roles.can('admin'))

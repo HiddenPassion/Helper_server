@@ -15,7 +15,7 @@ const assignMaterialToSubject = async (ctx) => {
     if (!Array.isArray(data) || data.length === 0) {
       throw new Error();
     }
-    
+
     for (let i = 0; i < data.length; i++) {
       await db.addMaterialData(id, data[i], transaction);
     }
@@ -30,10 +30,16 @@ const assignMaterialToSubject = async (ctx) => {
 
 const getAssignedMaterialsToSubject = async (ctx) => {
   try {
-    await db.getAssignedMaterialsToSubject(ctx.params.subjectId, ctx.request.query);
+    const materials = await db.getAssignedMaterialsToSubject(
+        ctx.params.subjectId,
+        ctx.request.query
+    );
     // add materailData, lecturer
-    ctx.body = {};
+    ctx.body = {
+      materials,
+    };
   } catch (err) {
+    console.log(err);
     errorMessage.internalServerError();
   }
 };

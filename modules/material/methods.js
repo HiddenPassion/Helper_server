@@ -1,11 +1,13 @@
 const { Material, MaterialData, MaterialRating, sequelize } = require('../../models');
 const Op = require('sequelize').Op;
 
-const assignMaterialToSubject = async (subjectId, { name }, transaction) => {
+const assignMaterialToSubject = async (subjectId, { name, lecturerId, userId }, transaction) => {
   try {
     return await Material.create(
         {
           subjectId,
+          lecturerId,
+          userId,
           name,
         },
         {
@@ -58,7 +60,9 @@ const getAssignedMaterialsToSubject = async (subjectId, { name }) => {
       },
       include: [
         {
-          model: Material,
+          // model: MaterialData,
+          all: true,
+          // nested: true,
         },
       ],
     });

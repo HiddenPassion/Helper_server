@@ -13,9 +13,14 @@ const assignSubjectToUniversity = async (ctx) => {
 
 const getAssignedSubjectsToUniversity = async (ctx) => {
   try {
-    await db.getAssignedSubjectsToUniversity(ctx.params.universityId, ctx.request.query);
+    const subjects = await db.getAssignedSubjectsToUniversity(
+        ctx.params.universityId,
+        ctx.request.query
+    );
 
-    ctx.body = {};
+    ctx.body = {
+      subjects,
+    };
   } catch (err) {
     errorMessage.internalServerError();
   }
