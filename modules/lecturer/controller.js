@@ -53,11 +53,38 @@ const getLecturer = async (ctx) => {
   }
 };
 
+const getLecturerRatingStatus = async (ctx) => {
+  try {
+    const lecturerRating = await db.getLecturerRatingStatus(
+        ctx.params.lecturerId,
+        ctx.params.userId
+    );
+
+    ctx.body = {
+      userLecturerRating: {
+        status: lecturerRating.status,
+      },
+    };
+  } catch (err) {
+    errorMessage.internalServerError();
+  }
+};
+
+const getLecturerRating = async (ctx) => {
+  try {
+    const lecturerRating = await db.getLecturerRating(ctx.params.lecturerId);
+
+    ctx.body = {
+      lecturerRating,
+    };  
+  } catch (err) {
+    errorMessage.internalServerError();
+  }
+};
+
 // delete lecturer and allAssign
 // getLecturersAssignToUniversity
 // getLecturersAssignToSubject
-// get rating count
-// get rating status
 
 module.exports = {
   addLecturer,
@@ -65,4 +92,6 @@ module.exports = {
   updateLecturer,
   updateLecturerRating,
   getLecturer,
+  getLecturerRating,
+  getLecturerRatingStatus,
 };

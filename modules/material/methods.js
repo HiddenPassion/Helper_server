@@ -118,6 +118,38 @@ const updateMaterialRating = async (materialRatingId, { status }) => {
   }
 };
 
+const getMaterialRatingStatus = async (materialId, userId) => {
+  try {
+    return await MaterialRating.findOne({ where: { materialId, userId }});
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+const getMaterialRating = async (materialId) => {
+  try {
+    const positiveRating = await MaterialRating.findAndCountAll({
+      where: {
+        materialId,
+        status: true,
+      },
+    });
+    
+    const negativeRating = await MaterialRating.findAndCountAll({
+      where: {
+        materialId,
+        status: false,
+      },
+    });
+    
+    return {
+      value: (positiveRating.count - negativeRating.count) || 0,
+    };
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
 module.exports = {
   sequelize,
   addMaterialData,
@@ -128,4 +160,6 @@ module.exports = {
   deleteMaterialData,
   setMaterialRating,
   updateMaterialRating,
+  getMaterialRating,
+  getMaterialRatingStatus,
 };

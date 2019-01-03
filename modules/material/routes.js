@@ -12,11 +12,13 @@ module.exports = (app) => {
   routes
   // .use(authController.checkAuthUser)
   // .use(roles.can('admin'))
+      .get('/rating/:materialId', controller.getMaterialRating)
+      .get('/rating/:materialId/:userId', controller.getMaterialRatingStatus)
       .post('/rating', validation(setMaterialRating), controller.setMaterialRating)
       .patch(
           '/rating/:materialRatingId',
           validation(updateMaterialRating),
-          controller.updateMaterial
+          controller.updateMaterial,
       );
 
   app.use(routes.routes());

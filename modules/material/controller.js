@@ -84,10 +84,36 @@ const updateMaterialRating = async (ctx) => {
   }
 };
 
+const getMaterialRatingStatus = async (ctx) => {
+  try {
+    const materialRating = await db.getMaterialRatingStatus(
+        ctx.params.materialId,
+        ctx.params.userId
+    );
+
+    ctx.body = {
+      userMaterialRating: {
+        status: materialRating.status,
+      },
+    };
+  } catch (err) {
+    errorMessage.internalServerError();
+  }
+};
+
+const getMaterialRating = async (ctx) => {
+  try {
+    const materialRating = await db.getMaterialRating(ctx.params.materialId);
+
+    ctx.body = {
+      materialRating,
+    };  
+  } catch (err) {
+    errorMessage.internalServerError();
+  }
+};
+
 // delete and all connected(material, materiaRating, materialData)
-// rating
-// getStatus(isAssign)
-// getRatingCount
 
 module.exports = {
   updateMaterial,
@@ -96,4 +122,6 @@ module.exports = {
   getAssignedMaterialsToSubject,
   setMaterialRating,
   updateMaterialRating,
+  getMaterialRatingStatus,
+  getMaterialRating,
 };

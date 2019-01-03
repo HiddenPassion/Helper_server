@@ -17,6 +17,8 @@ module.exports = (app) => {
   routes
 
       .get('/:lecturerId', controller.getLecturer)
+      .get('/rating/:lecturerId', controller.getLecturerRating)
+      .get('/rating/:lecturerId/:userId', controller.getLecturerRatingStatus)
   // .use(authController.checkAuthUser)
   // .use(roles.can('admin'))
       .post('/', validation(addLecturer), controller.addLecturer)

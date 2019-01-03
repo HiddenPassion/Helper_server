@@ -17,6 +17,8 @@ module.exports = (app) => {
   routes
 
       .get('/', controller.getFeedbacks)
+      .get('/rating/:feedbackId', controller.getFeedbackRating)
+      .get('/rating/:feedbackId/:userId', controller.getFeedbackRatingStatus)
   // .use(authController.checkAuthUser)
   // .use(roles.can('admin'))
       .post('/', validation(addFeedback), controller.addFeedback)

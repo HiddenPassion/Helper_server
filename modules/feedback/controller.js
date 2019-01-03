@@ -67,8 +67,34 @@ const getFeedbacks = async (ctx) => {
   }
 };
 
-// feedbackUserStatus
-// feedbackCount
+const getFeedbackRatingStatus = async (ctx) => {
+  try {
+    const feedbackRating = await db.getFeedbackRatingStatus(
+        ctx.params.feedbackId,
+        ctx.params.userId
+    );
+
+    ctx.body = {
+      userFeedbackRating: {
+        status: feedbackRating.status,
+      },
+    };
+  } catch (err) {
+    errorMessage.internalServerError();
+  }
+};
+
+const getFeedbackRating = async (ctx) => {
+  try {
+    const feedbackRating = await db.getFeedbackRating(ctx.params.feedbackId);
+
+    ctx.body = {
+      feedbackRating,
+    };  
+  } catch (err) {
+    errorMessage.internalServerError();
+  }
+};
 
 module.exports = {
   addFeedback,
@@ -77,4 +103,6 @@ module.exports = {
   updateFeedbackRating,
   deleteFeedback,
   getFeedbacks,
+  getFeedbackRating,
+  getFeedbackRatingStatus,
 };

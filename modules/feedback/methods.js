@@ -68,6 +68,38 @@ const getFeedbacks = async (lecturerId) => {
   }
 };
 
+const getFeedbackRatingStatus = async (feedbackId, userId) => {
+  try {
+    return await FeedbackRating.findOne({ where: { feedbackId, userId }});
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+const getFeedbackRating = async (feedbackId) => {
+  try {
+    const positiveRating = await FeedbackRating.findAndCountAll({
+      where: {
+        feedbackId,
+        status: true,
+      },
+    });
+    
+    const negativeRating = await FeedbackRating.findAndCountAll({
+      where: {
+        feedbackId,
+        status: false,
+      },
+    });
+    
+    return {
+      value: (positiveRating.count - negativeRating.count) || 0,
+    };
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
 module.exports = {
   sequelize,
   addFeedback,
@@ -77,4 +109,6 @@ module.exports = {
   setFeedbackRating,
   updateFeedbackRating,
   getFeedbacks,
+  getFeedbackRating,
+  getFeedbackRatingStatus,
 };

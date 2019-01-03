@@ -64,10 +64,44 @@ const getLecturer = async (id) => {
   }
 };
 
+const getLecturerRatingStatus = async (lecturerId, userId) => {
+  try {
+    return await LecturerRating.findOne({ where: { lecturerId, userId }});
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+const getLecturerRating = async (feedbackId) => {
+  try {
+    const positiveRating = await LecturerRating.findAndCountAll({
+      where: {
+        lecturerId,
+        status: true,
+      },
+    });
+    
+    const negativeRating = await LecturerRating.findAndCountAll({
+      where: {
+        lecturerId,
+        status: false,
+      },
+    });
+    
+    return {
+      value: (positiveRating.count - negativeRating.count) || 0,
+    };
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
 module.exports = {
   addLecturer,
   updateLecturer,
   getLecturer,
   setLecturerRating,
   updateLecturerRating,
+  getLecturerRating,
+  getLecturerRatingStatus,
 };
