@@ -13,7 +13,6 @@ const getUniversities = async ({ fullName, shortName }) => {
     throw new Error(err);
   }
 };
-// attributes: ['name', 'address', 'city'],
 
 const getUniversityById = async (id) => {
   try {

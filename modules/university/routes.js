@@ -5,6 +5,7 @@ const { addUniversity, updateUniversity, addSubject } = require('../../utils/sch
 // const authController = require('../auth/authControllers');
 const universityController = require('./controller');
 const subjectController = require('../subject/controller');
+const lecturerController = require('../lecturer/controller');
 // const roles = require('../../utils/roles');
 
 module.exports = (app) => {
@@ -12,6 +13,7 @@ module.exports = (app) => {
 
   routes
       .get('/', universityController.getUniversities)
+      .get('/lecturers/:universityId', lecturerController.getLecturersByUniversities)
       .get('/subject/:universityId', subjectController.getAssignedSubjectsToUniversity)
       .get('/:universityId', universityController.getUniversityById) // should be last in queue
       // .use(authController.checkAuthUser)

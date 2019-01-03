@@ -1,4 +1,4 @@
-const { Lecturer, LecturerRating } = require('../../models');
+const { Lecturer, LecturerRating, sequelize } = require('../../models');
 // const Op = require('sequelize').Op;
 
 const addLecturer = async ({ name, surname, patronymic, description, imageUrl }) => {
@@ -96,6 +96,25 @@ const getLecturerRating = async (feedbackId) => {
   }
 };
 
+const getQuery = (universityId) => (
+  `SELECT DISTINCT "L"."id", "L"."name", "L"."surname",
+    "L"."patronymic", "L"."description", "L"."image_url"
+  FROM "Universities" as "U"
+  INNER JOIN "Subjects" as "S" ON "U"."id" = "S"."university_id"
+  INNER JOIN "Materials" as "M" ON "S"."id" = "M"."subject_id"
+  INNER JOIN "Lecturers" as "L" ON "M"."lecturer_id" = "L"."id"
+  WHERE "U"."id" = '${universityId}'`
+);
+
+const getLecturersByUniversities = async (universityId) => {
+  try {
+    const lecturers = await sequelize.query(getQuery(universityId));
+    return lecturers[0];
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
 module.exports = {
   addLecturer,
   updateLecturer,
@@ -104,4 +123,5 @@ module.exports = {
   updateLecturerRating,
   getLecturerRating,
   getLecturerRatingStatus,
+  getLecturersByUniversities,
 };
