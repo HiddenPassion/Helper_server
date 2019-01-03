@@ -56,7 +56,6 @@ const getLecturer = async (ctx) => {
 // delete lecturer and allAssign
 // getLecturersAssignToUniversity
 // getLecturersAssignToSubject
-// delete lecturerRating
 // get rating count
 // get rating status
 

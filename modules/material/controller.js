@@ -38,19 +38,56 @@ const getAssignedMaterialsToSubject = async (ctx) => {
   }
 };
 
-// update material
-// updateMaterialData
-// delete materialData
-// delete and all connected(material, materiaRating, materialData)
+const updateMaterial = async (ctx) => {
+  try {
+    await db.updateMaterial(ctx.params.materialId, ctx.request.body);
 
+    ctx.body = {};
+  } catch (err) {
+    errorMessage.internalServerError();
+  }
+};
+
+const deleteMaterialData = async (ctx) => {
+  try {
+    await db.deleteMaterialData(ctx.params.materialData);
+
+    ctx.body = {};
+  } catch (err) {
+    errorMessage.internalServerError();
+  }
+};
+
+const setMaterialRating = async (ctx) => {
+  try {
+    await db.setMaterialRating(ctx.request.body);
+
+    ctx.body = {};
+  } catch (err) {
+    errorMessage.internalServerError();
+  }
+};
+
+const updateMaterialRating = async (ctx) => {
+  try {
+    await db.updateMaterialRating(ctx.params.materialRatingId, ctx.request.body);
+
+    ctx.body = {};
+  } catch (err) {
+    errorMessage.internalServerError();
+  }
+};
+
+// delete and all connected(material, materiaRating, materialData)
 // rating
-// assignToUserMaterial
 // getStatus(isAssign)
 // getRatingCount
-// update
-// delete by id or user or material
 
 module.exports = {
+  updateMaterial,
+  deleteMaterialData,
   assignMaterialToSubject,
   getAssignedMaterialsToSubject,
+  setMaterialRating,
+  updateMaterialRating,
 };

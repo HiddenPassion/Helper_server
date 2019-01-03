@@ -1,4 +1,4 @@
-const addFeedbackRating = {
+const setFeedbackRating = {
   type: 'object',
   properties: {
     userId: { type: 'string' },
@@ -8,4 +8,4 @@ const addFeedbackRating = {
   required: ['userId', 'feedbackId', 'status'],
 };
 
-module.exports = addFeedbackRating;
+module.exports = setFeedbackRating;

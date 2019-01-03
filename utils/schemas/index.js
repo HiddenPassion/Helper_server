@@ -5,11 +5,11 @@ const addSubject = require('./addSubject');
 const addMaterial = require('./addMaterial');
 const addLecturer = require('./addLecturer');
 const setLecturerRating = require('./setLecturerRating');
-const updateLecturerRating = require('./updateLecturerRating');
 const addFeedback = require('./addFeedback');
-const addFeedbackRating = require('./addFeedbackRating');
+const setFeedbackRating = require('./setFeedbackRating');
 const updateFeedback = require('./addFeedback');
-const updateFeedbackRating = require('./updateFeedbackRating');
+const updateRating = require('./updateRating');
+const setMaterialRating = require('./setMaterialRating');
 
 module.exports = {
   signIn,
@@ -22,9 +22,11 @@ module.exports = {
   addLecturer,
   updateLecturer: addLecturer,
   setLecturerRating,
-  updateLecturerRating,
   addFeedback,
-  addFeedbackRating,
+  setFeedbackRating,
   updateFeedback,
-  updateFeedbackRating,
+  setMaterialRating,
+  updateFeedbackRating: updateRating,
+  updateLecturerRating: updateRating,
+  updateMaterialRating: updateRating,
 };

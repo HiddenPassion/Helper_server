@@ -37,7 +37,7 @@ const deleteAssignedFeedbackRatingsToFeedback = async (feedbackId, transaction) 
   }
 };
 
-const addFeedbackRating = async ({ status, userId, feedbackId }) => {
+const setFeedbackRating = async ({ status, userId, feedbackId }) => {
   try {
     return await FeedbackRating.create({
       userId,
@@ -74,7 +74,7 @@ module.exports = {
   updateFeedback,
   deleteFeedback,
   deleteAssignedFeedbackRatingsToFeedback,
-  addFeedbackRating,
+  setFeedbackRating,
   updateFeedbackRating,
   getFeedbacks,
 };

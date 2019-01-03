@@ -35,9 +35,9 @@ const deleteFeedback = async (ctx) => {
   }
 };
 
-const addFeedbackRating = async (ctx) => {
+const setFeedbackRating = async (ctx) => {
   try {
-    await db.addFeedbackRating(ctx.request.body);
+    await db.setFeedbackRating(ctx.request.body);
 
     ctx.body = {};
   } catch (err) {
@@ -72,7 +72,7 @@ const getFeedbacks = async (ctx) => {
 
 module.exports = {
   addFeedback,
-  addFeedbackRating,
+  setFeedbackRating,
   updateFeedback,
   updateFeedbackRating,
   deleteFeedback,
