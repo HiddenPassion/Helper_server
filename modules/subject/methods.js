@@ -40,13 +40,13 @@ const getAssignedSubjectsToUniversity = async (universityId, { fullName, shortNa
   }
 };
 
-const updateSubject = async (id, { fullName, shortName }) => {
+const updateSubject = async (subjectId, { fullName, shortName }) => {
   try {
     return await Subject.update({
       fullName,
       shortName,
     }, {
-      where: { id },
+      where: { id: subjectId },
     });
   } catch (err) {
     throw new Error(err);

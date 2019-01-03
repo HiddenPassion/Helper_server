@@ -21,7 +21,11 @@ module.exports = (app) => {
   // .use(roles.can('admin'))
       .post('/', validation(addLecturer), controller.addLecturer)
       .post('/rating', validation(setLecturerRating), controller.setLecturerRating)
-      .patch('rating/:userId', validation(updateLecturerRating), controller.updateLecturerRating)
+      .patch(
+          'rating/:lecturerRatingId',
+          validation(updateLecturerRating),
+          controller.updateLecturerRating
+      )
       .patch('/:lecturerId', validation(updateLecturer), controller.updateLecturer);
 
   app.use(routes.routes());

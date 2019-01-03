@@ -31,12 +31,24 @@ const assignMaterialToSubject = async (ctx) => {
 const getAssignedMaterialsToSubject = async (ctx) => {
   try {
     await db.getAssignedMaterialsToSubject(ctx.params.subjectId, ctx.request.query);
-
+    // add materailData, lecturer
     ctx.body = {};
   } catch (err) {
     errorMessage.internalServerError();
   }
 };
+
+// update material
+// updateMaterialData
+// delete materialData
+// delete and all connected(material, materiaRating, materialData)
+
+// rating
+// assignToUserMaterial
+// getStatus(isAssign)
+// getRatingCount
+// update
+// delete by id or user or material
 
 module.exports = {
   assignMaterialToSubject,

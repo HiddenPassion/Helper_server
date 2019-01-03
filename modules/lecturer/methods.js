@@ -29,12 +29,12 @@ const setLecturerRating = async ({ userId, lecturerId, status }) => {
   }
 };
 
-const updateLecturerRating = async (userId, { status }) => {
+const updateLecturerRating = async (lecturerRatingId, { userId, status }) => {
   try {
     if (status === null) {
-      return await LecturerRating.destroy({ where: { userId } });
+      return await LecturerRating.destroy({ where: { id: lecturerRatingId } });
     }
-    return await LecturerRating.update({status}, { where: { userId } });
+    return await LecturerRating.update({ status, userId }, { where: { id: lecturerRatingId } });
   } catch (err) {
     throw new Error(err);
   }

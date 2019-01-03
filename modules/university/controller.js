@@ -38,7 +38,7 @@ const getUniversityById = async (ctx) => {
 const deleteUniversity = async (ctx) => {
   try {
     await db.deleteUniversity(ctx.params.universityId);
-
+    // delete all connected data
     ctx.body = {};
   } catch (err) {
     errorMessage.internalServerError();

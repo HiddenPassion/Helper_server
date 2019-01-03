@@ -55,10 +55,26 @@ const updateFeedbackRating = async (ctx) => {
   }
 };
 
+const getFeedbacks = async (ctx) => {
+  try {
+    const feedbacks = await db.getFeedbacks(ctx.params.lecturerId);
+
+    ctx.body = {
+      feedbacks,
+    };
+  } catch (err) {
+    errorMessage.internalServerError();
+  }
+};
+
+// feedbackUserStatus
+// feedbackCount
+
 module.exports = {
   addFeedback,
   addFeedbackRating,
   updateFeedback,
   updateFeedbackRating,
   deleteFeedback,
+  getFeedbacks,
 };

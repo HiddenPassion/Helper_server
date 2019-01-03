@@ -31,6 +31,8 @@ const updateSubject = async (ctx) => {
   }
 };
 
+// delete subject add all assigned data
+
 module.exports = {
   assignSubjectToUniversity,
   getAssignedSubjectsToUniversity,

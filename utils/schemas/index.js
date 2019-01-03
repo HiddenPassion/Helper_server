@@ -6,6 +6,10 @@ const addMaterial = require('./addMaterial');
 const addLecturer = require('./addLecturer');
 const setLecturerRating = require('./setLecturerRating');
 const updateLecturerRating = require('./updateLecturerRating');
+const addFeedback = require('./addFeedback');
+const addFeedbackRating = require('./addFeedbackRating');
+const updateFeedback = require('./addFeedback');
+const updateFeedbackRating = require('./updateFeedbackRating');
 
 module.exports = {
   signIn,
@@ -19,4 +23,8 @@ module.exports = {
   updateLecturer: addLecturer,
   setLecturerRating,
   updateLecturerRating,
+  addFeedback,
+  addFeedbackRating,
+  updateFeedback,
+  updateFeedbackRating,
 };

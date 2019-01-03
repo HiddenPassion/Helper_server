@@ -60,6 +60,14 @@ const updateFeedbackRating = async (feedbackRatingId, { status }) => {
   }
 };
 
+const getFeedbacks = async (lecturerId) => {
+  try {
+    return await Feedback.findAll({ where: { lecturerId } });
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
 module.exports = {
   sequelize,
   addFeedback,
@@ -68,4 +76,5 @@ module.exports = {
   deleteAssignedFeedbackRatingsToFeedback,
   addFeedbackRating,
   updateFeedbackRating,
+  getFeedbacks,
 };

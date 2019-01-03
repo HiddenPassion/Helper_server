@@ -23,7 +23,7 @@ const setLecturerRating = async (ctx) => {
 
 const updateLecturerRating = async (ctx) => {
   try {
-    await db.updateLecturerRating(ctx.params.userId, ctx.request.body);
+    await db.updateLecturerRating(ctx.params.lecturerRatingId, ctx.request.body);
 
     ctx.body = {};
   } catch (err) {
@@ -52,6 +52,13 @@ const getLecturer = async (ctx) => {
     errorMessage.internalServerError();
   }
 };
+
+// delete lecturer and allAssign
+// getLecturersAssignToUniversity
+// getLecturersAssignToSubject
+// delete lecturerRating
+// get rating count
+// get rating status
 
 module.exports = {
   addLecturer,
