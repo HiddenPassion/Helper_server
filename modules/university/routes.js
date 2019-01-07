@@ -14,7 +14,7 @@ module.exports = (app) => {
   routes
       .get('/', universityController.getUniversities)
       .get('/lecturers/:universityId', lecturerController.getLecturersByUniversities)
-      .get('/subject/:universityId', subjectController.getAssignedSubjectsToUniversity)
+      .get('/subjects/:universityId', subjectController.getAssignedSubjectsToUniversity)
       .get('/:universityId', universityController.getUniversityById) // should be last in queue
       // .use(authController.checkAuthUser)
       // .use(roles.can('admin'))
