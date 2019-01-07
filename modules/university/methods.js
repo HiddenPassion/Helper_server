@@ -8,6 +8,9 @@ const getUniversities = async ({ fullName, shortName }) => {
         fullName: { [Op.regexp]: fullName ? fullName : '' },
         shortName: { [Op.regexp]: shortName ? shortName : '' },
       },
+      order: [
+        ['fullName', 'ASC'],
+      ],
     });
   } catch (err) {
     throw new Error(err);
@@ -52,6 +55,7 @@ const updateUniversity = async (id, { fullName, shortName }) => {
         },
         {
           where: { id },
+          returning: true,
         }
     );
   } catch (err) {

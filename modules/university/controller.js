@@ -3,9 +3,11 @@ const errorMessage = require('../../utils/errorMessage');
 
 const addUniversity = async (ctx) => {
   try {
-    await db.addUniversity(ctx.request.body);
+    const university = await db.addUniversity(ctx.request.body);
 
-    ctx.body = {};
+    ctx.body = {
+      university,
+    };
   } catch (err) {
     errorMessage.validationError();
   }
@@ -47,9 +49,11 @@ const deleteUniversity = async (ctx) => {
 
 const updateUniversity = async (ctx) => {
   try {
-    await db.updateUniversity(ctx.params.universityId, ctx.request.body);
+    const university = await db.updateUniversity(ctx.params.universityId, ctx.request.body);
 
-    ctx.body = {};
+    ctx.body = {
+      university: university[1][0],
+    };
   } catch (err) {
     errorMessage.internalServerError();
   }
