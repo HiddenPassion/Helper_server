@@ -9,13 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     fullName: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
       field: 'full_name',
     },
     shortName: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
       field: 'short_name',
     },

@@ -28,9 +28,9 @@ const getAssignedSubjectsToUniversity = async (ctx) => {
 
 const updateSubject = async (ctx) => {
   try {
-    await db.updateSubject(ctx.params.subjectId, ctx.request.body);
+    const subject = await db.updateSubject(ctx.params.subjectId, ctx.request.body);
 
-    ctx.body = {};
+    ctx.body = { subject: subject[1][0] };
   } catch (err) {
     errorMessage.internalServerError();
   }

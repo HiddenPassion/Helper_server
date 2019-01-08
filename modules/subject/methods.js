@@ -34,6 +34,9 @@ const getAssignedSubjectsToUniversity = async (universityId, { fullName, shortNa
         fullName: { [Op.regexp]: fullName ? fullName : '' },
         shortName: { [Op.regexp]: shortName ? shortName : '' },
       },
+      order: [
+        ['fullName', 'ASC'],
+      ],
     });
   } catch (err) {
     throw new Error(err);
@@ -47,6 +50,7 @@ const updateSubject = async (subjectId, { fullName, shortName }) => {
       shortName,
     }, {
       where: { id: subjectId },
+      returning: true,
     });
   } catch (err) {
     throw new Error(err);

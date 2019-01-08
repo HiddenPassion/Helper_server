@@ -25,6 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     models.University.hasMany(models.Subject, {
       foreignKey: 'university_id',
       sourceCode: 'id',
+      onDelete: 'cascade',
+      hooks: true,
     });
   };
 
