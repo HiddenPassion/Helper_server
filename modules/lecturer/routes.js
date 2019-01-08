@@ -2,7 +2,6 @@ const Router = require('koa-router');
 
 const validation = require('../../utils/validator');
 const {
-  addLecturer,
   updateLecturer,
   setLecturerRating,
   updateLecturerRating,
@@ -21,7 +20,6 @@ module.exports = (app) => {
       .get('/rating/:lecturerId/:userId', controller.getLecturerRatingStatus)
   // .use(authController.checkAuthUser)
   // .use(roles.can('admin'))
-      .post('/', validation(addLecturer), controller.addLecturer)
       .post('/rating', validation(setLecturerRating), controller.setLecturerRating)
       .patch(
           'rating/:lecturerRatingId',

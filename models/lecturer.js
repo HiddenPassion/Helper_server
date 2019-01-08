@@ -26,9 +26,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       field: 'image_url',
     },
+    universityId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      field: 'university_id',
+    },
   });
 
   Lecturer.associate = (models) => {
+    models.Subject.belongsTo(models.University, {
+      foreignKey: 'university_id',
+      targetKey: 'id',
+    });
+
     models.Lecturer.hasMany(models.Material, {
       foreignKey: 'lecturer_id',
       sourceCode: 'id',

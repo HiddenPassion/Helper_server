@@ -1,7 +1,7 @@
 const Router = require('koa-router');
 
 const validation = require('../../utils/validator');
-const { addUniversity, updateUniversity, addSubject } = require('../../utils/schemas');
+const { addLecturer, addUniversity, updateUniversity, addSubject } = require('../../utils/schemas');
 // const authController = require('../auth/authControllers');
 const universityController = require('./controller');
 const subjectController = require('../subject/controller');
@@ -13,7 +13,7 @@ module.exports = (app) => {
 
   routes
       .get('/', universityController.getUniversities)
-      .get('/lecturers/:universityId', lecturerController.getLecturersByUniversities)
+      .get('/lecturers/:universityId', lecturerController.getLecturersByUniversityId)
       .get('/subjects/:universityId', subjectController.getAssignedSubjectsToUniversity)
       .get('/:universityId', universityController.getUniversityById) // should be last in queue
       // .use(authController.checkAuthUser)
@@ -24,6 +24,7 @@ module.exports = (app) => {
           validation(addSubject),
           subjectController.assignSubjectToUniversity
       )
+      .post('/lecturer/:universityId', validation(addLecturer), lecturerController.addLecturer)
       .delete('/:universityId', universityController.deleteUniversity)
       .patch('/:universityId', validation(updateUniversity), universityController.updateUniversity);
 

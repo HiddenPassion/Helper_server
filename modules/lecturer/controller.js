@@ -3,7 +3,7 @@ const errorMessage = require('../../utils/errorMessage');
 
 const addLecturer = async (ctx) => {
   try {
-    await db.addLecturer(ctx.request.body);
+    await db.addLecturer(ctx.params.universityId, ctx.request.body);
 
     ctx.body = {};
   } catch (err) {
@@ -33,9 +33,9 @@ const updateLecturerRating = async (ctx) => {
 
 const updateLecturer = async (ctx) => {
   try {
-    await db.updateLecturer(ctx.params.lecturerId, ctx.request.body);
+    const lecturer = await db.updateLecturer(ctx.params.lecturerId, ctx.request.body);
 
-    ctx.body = {};
+    ctx.body = { lecturer: lecturer[1][0] };
   } catch (err) {
     errorMessage.internalServerError();
   }
@@ -82,9 +82,9 @@ const getLecturerRating = async (ctx) => {
   }
 };
 
-const getLecturersByUniversities = async (ctx) => {
+const getLecturersByUniversityId = async (ctx) => {
   try {
-    const lecturers = await db.getLecturersByUniversities(ctx.params.universityId);
+    const lecturers = await db.getLecturersByUniversityId(ctx.params.universityId);
 
     ctx.body = {
       lecturers,
@@ -104,5 +104,5 @@ module.exports = {
   getLecturer,
   getLecturerRating,
   getLecturerRatingStatus,
-  getLecturersByUniversities,
+  getLecturersByUniversityId,
 };

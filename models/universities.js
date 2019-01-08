@@ -28,6 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'cascade',
       hooks: true,
     });
+
+    models.University.hasMany(models.Lecturer, {
+      foreignKey: 'university_id',
+      sourceCode: 'id',
+    });
   };
 
   return University;
