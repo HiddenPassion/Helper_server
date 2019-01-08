@@ -12,7 +12,10 @@ const localOptions = { usernameField: 'email' };
 passport.use(
     new LocalStrategy(localOptions, async (email, password, cb) => {
       try {
-        const user = await User.findOne({ where: { email } });
+        const user = await User.findOne({
+          where: { email },
+          // attributes: ['id', 'username', 'email'],
+        });
 
         if (!user) {
           return cb(null, false, { message: 'User with such email doesn\'t exist.' });

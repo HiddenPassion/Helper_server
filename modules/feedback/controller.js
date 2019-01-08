@@ -3,7 +3,7 @@ const errorMessage = require('../../utils/errorMessage');
 
 const addFeedback = async (ctx) => {
   try {
-    await db.addFeedback(ctx.request.body);
+    await db.addFeedback(ctx.params.lecturerId, ctx.request.body);
 
     ctx.body = {};
   } catch (err) {

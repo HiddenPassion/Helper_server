@@ -2,7 +2,6 @@ const Router = require('koa-router');
 
 const validation = require('../../utils/validator');
 const {
-  addFeedback,
   setFeedbackRating,
   updateFeedback,
   updateFeedbackRating,
@@ -15,13 +14,10 @@ module.exports = (app) => {
   const routes = new Router({ prefix: '/feedback' });
 
   routes
-
-      .get('/', controller.getFeedbacks)
       .get('/rating/:feedbackId', controller.getFeedbackRating)
       .get('/rating/:feedbackId/:userId', controller.getFeedbackRatingStatus)
   // .use(authController.checkAuthUser)
   // .use(roles.can('admin'))
-      .post('/', validation(addFeedback), controller.addFeedback)
       .post('/rating', validation(setFeedbackRating), controller.setFeedbackRating)
       .post(
           '/rating/:feedbackRatingId',

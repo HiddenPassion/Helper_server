@@ -1,7 +1,7 @@
-const { Feedback, FeedbackRating, sequelize } = require('../../models');
+const { Feedback, FeedbackRating, User, sequelize } = require('../../models');
 // const Op = require('sequelize').Op;
 
-const addFeedback = async ({ description, userId, lecturerId }) => {
+const addFeedback = async (lecturerId, { description, userId }) => {
   try {
     return await Feedback.create({
       userId,
@@ -62,7 +62,16 @@ const updateFeedbackRating = async (feedbackRatingId, { status }) => {
 
 const getFeedbacks = async (lecturerId) => {
   try {
-    return await Feedback.findAll({ where: { lecturerId } });
+    return await Feedback.findAll({
+      where: { lecturerId },
+      include: [{
+        model: User,
+        attributes: ['id', 'username', 'updatedAt'],
+      }],
+      order: [
+        ['createdAt', 'DESC'],
+      ],
+    });
   } catch (err) {
     throw new Error(err);
   }
